@@ -47,3 +47,24 @@ Note
 
 This project has been set up using PyScaffold 4.3. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
+
+===
+Dev
+===
+
+sudo apt install python3-pip
+sudo apt install python3 python3-venv python3-pip
+sudo python3 -m pip install -U pyscaffold[all]
+sudo python3 -m pip install virtualenv
+git config --global user.email "30276587+gazzasaur@users.noreply.github.com"
+git config --global user.name "gazzasaur"
+putup -i k8s_builder
+
+cd k8s_builder/
+. .venv/bin/activate
+tox -e build
+python3 -m pip install -e .
+tox
+
+# If tests fail due to dependencies recreate everything
+tox -r
