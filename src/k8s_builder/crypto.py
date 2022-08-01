@@ -27,7 +27,7 @@ class Ca:
     just set it to something long and monitor the age instead of swallowing the
     poison pill.
 
-    x509.RelativeDistinguishedName([
+    x509.Name([
         x509.NameAttribute(x509.NameOID.DOMAIN_COMPONENT, 'example.com')
         x509.NameAttribute(x509.NameOID.ORGANIZATION_NAME, 'k8s'),
         x509.NameAttribute(x509.NameOID.ORGANIZATIONAL_UNIT_NAME, 'builder'),
