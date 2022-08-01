@@ -38,9 +38,13 @@ Install the required packages::
 
     python3 -m pip install -e .
 
-Build the package::
+Run the tests::
 
     tox
+
+Install the package locally::
+
+    python3 -m pip install -e .
 
 If new dependencies are added or after each pull, rebuild the environment::
 
