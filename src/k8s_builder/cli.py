@@ -1,11 +1,15 @@
-import sys
-import logging
-import argparse
-from k8s_builder import __version__
+"""
+This contains the cli component for the base setup.
+"""
 
 __author__ = "gazzasaur"
 __copyright__ = "gazzasaur"
 __license__ = "MIT"
+
+import sys
+import logging
+import argparse
+from k8s_builder import __version__
 
 _logger = logging.getLogger(__name__)
 
