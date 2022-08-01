@@ -21,21 +21,27 @@ Getting Started
 ===============
 
 Setting up your environment::
+
     sudo apt install python3-pip python3-virtualenv
 
 Down the and setup the package::
+
     git clone
     cd k8s_builder
     virtualenv .venv
 
 Switch to the virtual envinronment::
+
     . .venv/bin/activate
 
 Install the required packages::
+
     python3 -m pip install -e .
 
 Build the package::
+
     tox
 
 If new dependencies are added or after each pull, rebuild the environment::
+
     tox -r
