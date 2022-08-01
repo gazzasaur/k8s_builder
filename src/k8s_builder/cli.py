@@ -33,21 +33,22 @@ def parse_args(args):
         version="k8s_builder {ver}".format(ver=__version__),
     )
 
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
         "-f",
         "--file",
         dest="config_file",
         help="Read the cluster setup information from a file",
         type=str,
-        metavar="CONFIGPATH",
+        metavar="CONFIG_FILE",
     )
-    parser.add_argument(
+    group.add_argument(
         "-u",
         "--url",
         dest="config_url",
         help="Read the cluster setup information from a url",
         type=str,
-        metavar="CONFIGURL",
+        metavar="CONFIG_URL",
     )
 
     parser.add_argument(
