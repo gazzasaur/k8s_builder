@@ -1,4 +1,5 @@
 from time import sleep, time
+from unittest import mock
 import pytest
 
 import time
@@ -45,7 +46,12 @@ def test_generate_intermediate_ca():
     assert int_cert.not_valid_after == root_cert.not_valid_after
 
 
-def test_generate_intermediate_ca_not_before_based_on_now():
+@mock.patch('k8s_builder.crypto.datetime')
+def test_generate_intermediate_ca_not_before_based_on_now(mock_datetime):
+#    mock_datetime.utcnow = mock.Mock(return_value=datetime(1901, 12, 21))
+
+    mock_datetime.utcnow.return_value = datetime.now()
+
     root_certificate_subject = x509.Name([
         x509.NameAttribute(x509.NameOID.COMMON_NAME, 'Root CA 1'),
         x509.NameAttribute(x509.NameOID.ORGANIZATIONAL_UNIT_NAME, 'builder'),
@@ -53,7 +59,7 @@ def test_generate_intermediate_ca_not_before_based_on_now():
         x509.NameAttribute(x509.NameOID.DOMAIN_COMPONENT, 'example.com')])
     (root_cert, root_key) = crypto.Ca.generate_root_ca(root_certificate_subject)
 
-    time.sleep(1.0);
+    mock_datetime.utcnow.return_value = datetime.now() + timedelta(seconds=1)
 
     intermediate_name = 'Intermediate CA 1'
     (int_cert, int_key) = crypto.Ca.generate_intermediate_ca(intermediate_name, root_cert, root_key)
